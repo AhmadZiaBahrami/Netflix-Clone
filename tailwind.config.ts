@@ -1,7 +1,7 @@
 // tailwind.config.ts
-import type { Configuration } from 'tailwindcss';
+import type * as Config from 'tailwindcss';
 
-const config: Configuration = {
+const config: Config.Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
