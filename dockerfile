@@ -1,4 +1,4 @@
-FROM node:16.14.0-alpine
+FROM node:20.10.0-alpine
 
 WORKDIR /app
 
@@ -11,5 +11,7 @@ COPY . .
 RUN npm run build
 
 EXPOSE 3000
+
+#RUN prisma generate
 
 CMD ["npm", "start"]
