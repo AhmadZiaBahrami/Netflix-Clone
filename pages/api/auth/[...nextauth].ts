@@ -26,7 +26,7 @@ export const authOptions: AuthOptions = {
         },
         password: {
           label: 'Password',
-          type: 'passord'
+          type: 'password' // Fix typo here
         }
       },
       async authorize(credentials) {
@@ -34,9 +34,7 @@ export const authOptions: AuthOptions = {
           throw new Error('Email and password required');
         }
 
-        const user = await prismadb.user.findUnique({ where: {
-          email: credentials.email
-        }});
+        const user = await prismadb.user.findUnique({ where: { email: credentials.email }});
 
         if (!user || !user.hashedPassword) {
           throw new Error('Email does not exist');
@@ -59,9 +57,9 @@ export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prismadb),
   session: { strategy: 'jwt' },
   jwt: {
-    secret: process.env.NEXTAUTH_JWT_SECRET,
+    secret: process.env.NEXTAUTH_JWT_SECRET || '', // Update here
   },
-  secret: process.env.NEXTAUTH_SECRET
+  secret: process.env.NEXTAUTH_SECRET || '', // Update here
 };
 
 export default NextAuth(authOptions);
